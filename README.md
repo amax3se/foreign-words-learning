@@ -1,1 +1,1 @@
-# foreign-words-learning
+# Foreign Words Learning
