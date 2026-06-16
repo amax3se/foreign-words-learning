@@ -8,6 +8,7 @@ void commandShowing() { // showing commands
     cout << "/newWords - add new words" << endl;
     cout << "/show - show your words" << endl;
     cout << "/cards - begin learning" << endl;
+    cout << "/exit - stop programm" << endl;
 }
 
 int main() {
@@ -20,7 +21,7 @@ int main() {
     cout << endl;
 
     // commands 
-    while (true) {
+    while (command != "/exit") {
         cout << "Enter command: ";
         cin >> command;
         if (command == "/newWords") {  // add new words
@@ -49,9 +50,11 @@ int main() {
                 cout << pair.first << " - " << pair.second << endl;
             }
             cout << endl;
-        } else if (command == "/cards") { // learning neew words with cards
+        } else if (command == "/cards") { // learning new words with cards
             cout << endl;
             /* There will be cards func */ 
+        } else if (command == "/exit") { // stop programm
+            break;
         } else { 
             cout << endl;
             cout << "I havn't got that command yet. " << endl; 
