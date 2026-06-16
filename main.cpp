@@ -17,12 +17,14 @@ int main() {
     // greetings
     cout << "Hello! I will help you learn some foriegn words. ";
     commandShowing();
+    cout << endl;
 
     // commands 
     while (true) {
         cout << "Enter command: ";
         cin >> command;
         if (command == "/newWords") {  // add new words
+            cout << endl;
             int wordsAm;
             string word, translation;
 
@@ -40,20 +42,21 @@ int main() {
                 words[word] = translation;
                 cout << endl;
             }
-            continue;
         } else if (command == "/show") {  // show your words
+            cout << endl;
             cout << "Great! There are your words: " << endl;
             for (const auto& pair : words) {
                 cout << pair.first << " - " << pair.second << endl;
             }
-            continue;
+            cout << endl;
         } else if (command == "/cards") { // learning neew words with cards
+            cout << endl;
             /* There will be cards func */ 
-            continue;
         } else { 
+            cout << endl;
             cout << "I havn't got that command yet. " << endl; 
             commandShowing();
-            continue;
+            cout << endl;
         }
     }
 
