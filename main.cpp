@@ -60,7 +60,37 @@ int main() {
             cout << endl;
         } else if (command == "/cards") { // learning new words with cards
             clearScreen();
-            /* There will be cards func */ 
+            string mode, userWord;
+            cout << "Fine! Write \"Word\" if you want me to write words in your language and \"Translation\" if translation. " << endl;
+            cin >> mode;
+
+            if (mode == "Word") {
+                clearScreen();
+                cout << "I will write the word in your language and you need to answer me the foreign word. Let's begin. ";
+
+                for (const auto& pair : words) {
+                    cout << pair.first << endl;
+
+                    while (userWord != pair.second) {
+                        cin >> userWord;
+                        if (userWord != pair.second) { cout << "No! Try again. "; }
+                    }
+                    cout << "Yes! Next word: " << endl; 
+                }
+            } else if (mode == "Translation") {
+                clearScreen();
+                cout << "I will write the foreign word and you need to answer me the in your language. Let's begin. ";
+
+                for (const auto& pair : words) {
+                    cout << pair.second << endl;
+
+                    while (userWord != pair.first) {
+                        cin >> userWord;
+                        if (userWord != pair.first) { cout << "No! Try again. "; }
+                    }
+                    cout << "Yes! Next word: " << endl; 
+                }
+            } //! don't get words with space (" ")
         } else if (command == "/exit") { // stop programm
             break;
         } else { 
