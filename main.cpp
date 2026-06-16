@@ -8,6 +8,13 @@ int main() {
     string word, translation;
     int wordsAm;
 
+    // Greatings
+    cout << "Hello! I will help you learn some foriegn words. My commands: " << endl;
+    cout << "/newWords - add new words" << endl;
+    cout << "/show - show your words" << endl;
+    cout << "/cards - begin learning" << endl;
+
+    
     cout << "How much words do you want to add? ";
     cin >> wordsAm;
     cout << endl;
