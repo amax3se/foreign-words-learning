@@ -3,6 +3,14 @@
 #include <string>
 using namespace std;
 
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 void commandShowing() { // showing commands
     cout << "My commands are: " << endl;
     cout << "/newWords - add new words" << endl;
@@ -17,18 +25,18 @@ int main() {
 
     // greetings
     cout << "Hello! I will help you learn some foriegn words. ";
-    commandShowing();
     cout << endl;
 
     // commands 
     while (command != "/exit") {
+        commandShowing();
         cout << "Enter command: ";
         cin >> command;
         if (command == "/newWords") {  // add new words
-            cout << endl;
+            clearScreen();
             int wordsAm;
             string word, translation;
-
+            cout << endl;
             cout << "How much words do you want to add? ";
             cin >> wordsAm;
             cout << endl;
@@ -44,19 +52,19 @@ int main() {
                 cout << endl;
             }
         } else if (command == "/show") {  // show your words
-            cout << endl;
+            clearScreen();
             cout << "Great! There are your words: " << endl;
             for (const auto& pair : words) {
                 cout << pair.first << " - " << pair.second << endl;
             }
             cout << endl;
         } else if (command == "/cards") { // learning new words with cards
-            cout << endl;
+            clearScreen();
             /* There will be cards func */ 
         } else if (command == "/exit") { // stop programm
             break;
         } else { 
-            cout << endl;
+            clearScreen();
             cout << "I havn't got that command yet. " << endl; 
             commandShowing();
             cout << endl;
