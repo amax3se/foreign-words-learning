@@ -4,11 +4,11 @@
 using namespace std;
 
 void clearScreen() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 }
 
 void commandShowing() { // showing commands
@@ -41,12 +41,14 @@ int main() {
             cin >> wordsAm;
             cout << endl;
             cout << "Please, enter the words" << endl;
-            
+
+            string fooler;
+            getline(cin, fooler, '\n');
             for (int i=0; i<wordsAm; i++) {
                 cout << "Enter the " << i+1 << " word: ";
-                cin >> word;
+                getline(cin, word, '\n');
                 cout << "Enter the translation: ";
-                cin >> translation;
+                getline(cin, translation, '\n');
 
                 words[word] = translation;
                 cout << endl;
@@ -74,7 +76,7 @@ int main() {
                     cout << pair.first << endl;
 
                     while (userWord != pair.second) {
-                        cin >> userWord;
+                        getline(cin, userWord, ' ');
                         if (userWord != pair.second) { cout << "Nope! Try again. "; }
                     }
                     
@@ -94,7 +96,7 @@ int main() {
                     cout << pair.second << endl;
 
                     while (userWord != pair.first) {
-                        cin >> userWord;
+                        getline(cin, userWord, ' ');
                         if (userWord != pair.first) { cout << "Nope! Try again. "; }
                     }
                     
@@ -106,11 +108,11 @@ int main() {
                     }
                 }
                 count = 0;
-            } //! don't get words with space (" ")
+            } 
         } else { 
             clearScreen();
             if (command == "/exit") { break; }
-            
+
             cout << "I don't have such a command yet. " << endl; 
             commandShowing();
             cout << endl;
