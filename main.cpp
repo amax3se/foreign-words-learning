@@ -14,7 +14,7 @@ void clearScreen() {
 void commandShowing() { // showing commands
     cout << "My commands are: " << endl;
     cout << "/newWords - add new words" << endl;
-    cout << "/show - show your words" << endl;
+    cout << "/show - show your dictionary" << endl;
     cout << "/cards - begin learning" << endl;
     cout << "/exit - stop programm" << endl;
 }
@@ -43,7 +43,7 @@ int main() {
             cout << "Please, enter the words" << endl;
             
             for (int i=0; i<wordsAm; i++) {
-                cout << "Enter the word: ";
+                cout << "Enter the " << i+1 << " word: ";
                 cin >> word;
                 cout << "Enter the translation: ";
                 cin >> translation;
@@ -61,41 +61,57 @@ int main() {
         } else if (command == "/cards") { // learning new words with cards
             clearScreen();
             string mode, userWord;
-            cout << "Fine! Write \"Word\" if you want me to write words in your language and \"Translation\" if translation. " << endl;
+            int count=0;
+
+            cout << "Fine! Type \"Word\" if you want me to write words in your language and \"Translation\" if you want me to write a translation. " << endl;
             cin >> mode;
 
             if (mode == "Word") {
                 clearScreen();
-                cout << "I will write the word in your language and you need to answer me the foreign word. Let's begin. ";
+                cout << "I'll write foreign words and you have to guess the translation. Let's begin. ";
 
                 for (const auto& pair : words) {
                     cout << pair.first << endl;
 
                     while (userWord != pair.second) {
                         cin >> userWord;
-                        if (userWord != pair.second) { cout << "No! Try again. "; }
+                        if (userWord != pair.second) { cout << "Nope! Try again. "; }
                     }
-                    cout << "Yes! Next word: " << endl; 
+                    
+                    count++;
+                    if (count == words.size()) {
+                        cout << "Right! You guessed all the words. " << endl;
+                    } else {
+                        cout << "Right! Next word: " << endl;
+                    }
                 }
+                count = 0;
             } else if (mode == "Translation") {
                 clearScreen();
-                cout << "I will write the foreign word and you need to answer me the in your language. Let's begin. ";
+                cout << "I'll write foreign words and you have to guess the translation. Let's begin. ";
 
                 for (const auto& pair : words) {
                     cout << pair.second << endl;
 
                     while (userWord != pair.first) {
                         cin >> userWord;
-                        if (userWord != pair.first) { cout << "No! Try again. "; }
+                        if (userWord != pair.first) { cout << "Nope! Try again. "; }
                     }
-                    cout << "Yes! Next word: " << endl; 
+                    
+                    count++;
+                    if (count == words.size()) {
+                        cout << "Right! You guessed all the words. " << endl;
+                    } else {
+                        cout << "Right! Next word: " << endl;
+                    }
                 }
+                count = 0;
             } //! don't get words with space (" ")
-        } else if (command == "/exit") { // stop programm
-            break;
         } else { 
             clearScreen();
-            cout << "I havn't got that command yet. " << endl; 
+            if (command == "/exit") { break; }
+            
+            cout << "I don't have such a command yet. " << endl; 
             commandShowing();
             cout << endl;
         }
